@@ -8,22 +8,16 @@ counterStore.$subscribe((mutation, state) => {
   console.log("state :", state);
 });
 
-function handleClick() {
-  counterStore.counter++;
-}
-
-function handleReset() {
-  counterStore.$patch({
-    counter: 0,
-  });
-}
+counterStore.$onAction((action) => {
+  console.log("action :", action);
+});
 </script>
 
 <template>
   <div>
     <h1>Counter : {{ counterStore.counter }}</h1>
-    <button @click="handleClick">Increament</button>
-    <button @click="handleReset">Reset</button>
+    <button @click="counterStore.increment()">Increment</button>
+    <button @click="counterStore.reset()">Reset</button>
   </div>
 </template>
 
